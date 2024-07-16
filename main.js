@@ -47,11 +47,26 @@ async function fetchData() {
         if (!response.ok) {
             throw new Error("could not fetch resource");
         }
-
+        //NOTE : Response type : Array of Objects 
         const data = await response.json();
         console.log(data);
-        const obj = JSON.parse(data.contents);
-    
+        console.log(data[0])
+        
+        //if author name is empty
+        quoteAuthor.innerText = data[0].author;
+        if (data[0].author === "" ) {
+            quoteAuthor.innerText = "Unknown";
+        }
+        
+        //reduce size for longer text
+        if (data[0].content.length > 50 ) {
+            quoteText.classList.add("long-quote");
+        } else {
+            quoteText.classList.remove("long-quote");
+        }
+
+        quoteText.innerText = data[0].content;
+        hideLoader();
     }
     catch(error) {
         console.error(error);
