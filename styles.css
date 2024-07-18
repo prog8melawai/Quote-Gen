@@ -18,30 +18,62 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 /* Overlay */
+img {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -20;
+    opacity: 0.3;
+    /* background-color:#25252531; */
+
+    transition: opacity 1s ease-in-out;
+}
+
 .overlay { 
-    background-color:#252525a0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    opacity: 1;
+    background-color:#25252500;
 }
 
 /* Main container styling */
 .quote-container { 
     width: 80vw;
     background: whitesmoke;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    max-width: 75vw;
-    max-height: 55vh;
-    min-height: 200px;
-    min-width: 350px;
+    z-index: 25;
+    width: 75vw;
+    height: 50vh;
     padding: 3em 4em;
     border-radius: 10px;
-
 }
+
 
 .quote__text {
     font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 1.5
+    font-size: 2rem;
+    /* line-height: 1.2 */
+}
+
+
+.long-quote { 
+    font-size: 1.3rem;
+    font-weight: 600;
+    /* line-height: 0.7 */
+}
+
+.xl-quote {
+    font-size: 0.9rem;
+    font-weight: 600;
+    /* line-height: 0.5 */
 }
 
 .quote__author {
@@ -52,12 +84,14 @@ body {
 }
 
 .btn-container {
-    margin-top: 2em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 0.25em;
+    gap: 5em;
+    z-index : 60;
 }
 
 button {
@@ -67,8 +101,8 @@ button {
     border-radius: 8px;
     padding: 0.5em 1.2em;
     outline: none;
-    background: #45474b;
-    color: whitesmoke;
+    background: whitesmoke; 
+    color: rgb(25, 25, 25);
     max-width: 55%;
     min-width: 128px;
 }
@@ -78,7 +112,7 @@ button:hover {
 }
 
 button:active{
-    transform: translateY(0.5rem);
+    transform: translateY(0.2rem);
     box-shadow : 0 0.1rem (255,255,255,0.6);
 }
 
@@ -95,10 +129,11 @@ button:active{
     width: 180px;
     height: 180px;
     position: absolute;
-    left: 50%;
+    left: 50.7%;
     top: 50%;
     margin: -100px 0 0 -100px;
-    display: none;
+    /* display: none; */
+    z-index: 50;
 }
 
 .hex-brick { 
