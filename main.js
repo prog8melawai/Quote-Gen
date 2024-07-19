@@ -39,29 +39,41 @@ async function getQuote() {
             throw new Error("could not fetch resource");
         }
         //NOTE : Response type : Array of Objects 
+        //DESTRUCTURING
         const data = await response.json();
-        console.log(data);
-        console.log(data[0])
+        // console.log(data);
+        // console.log(data[0]);
+
+        // let {obj} = data;
+        // console.log(obj).
+        // let {author, content} = obj;
+
+        // console.log(`author ${author}`, author);
+        // console.log(`content ${content}`, content);
+
+        const [{ author: author, content: content }] = data;
+        console.log(`author ${author}`, author);
+        console.log(`content ${content}`, content);
         
         //if author name is empty
-        quoteAuthor.innerText = data[0].author;
-        if (data[0].author === "" ) {
+        quoteAuthor.innerText = author;
+        if (author === "" ) {
             quoteAuthor.innerText = "Unknown";
         }
         
         //reduce size for longer text
-        if (data[0].content.length > 50 ) {
+        if (content.length > 50 ) {
             quoteText.classList.add("long-quote");
         } else {
             quoteText.classList.remove("long-quote");
         }
-        if (data[0].content.length > 100 ) {
+        if (content.length > 100 ) {
             quoteText.classList.add("xl-quote");
         } else {
             quoteText.classList.remove("xl-quote");
         }
 
-        quoteText.innerText = data[0].content;
+        quoteText.innerText = content;
         hideLoader();
     }
     catch(error) {
@@ -93,10 +105,12 @@ async function getPhoto() {
         console.log(data);
         // console.log(data.urls.full);
 
-        const imageurl = data.urls.full;
+        // const imageurl = data.urls.full;
+        const { urls: {full}} = data;
+        console.log(full);
         // console.log(imageurl);
-        // document.body.style.backgroundImage = `url(${imageurl})`;
-        document.getElementById("bg").src = data.urls.full;
+        //DESTRUCTURING
+        document.getElementById("bg").src = full;
     }
     catch (error) {
         console.log("error");
